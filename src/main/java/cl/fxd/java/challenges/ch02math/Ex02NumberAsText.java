@@ -3,53 +3,29 @@ package cl.fxd.java.challenges.ch02math;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class Ex02NumberAsText {
 
     String numberAsText(int n){
         List<String> listado    = new ArrayList<>();
-        String valorComoTexto   = "";
         var remanente           = n;
+        Map<Integer,String> mapaNumeros = Map.of(
+                0, "cero",
+                1, "uno",
+                2, "dos",
+                3, "tres",
+                4, "cuatro",
+                5, "cinco",
+                6, "seis",
+                7, "siete",
+                8, "ocho",
+                9, "nueve");
+
 
         while (remanente>0){
-            switch (remanente%10){
-                case 0:
-                    listado.add("cero");
-                    break;
-                case 1:
-                    listado.add("uno");
-                    break;
-                case 2:
-                    listado.add("dos");
-                    break;
-                case 3:
-                    listado.add("tres");
-                    break;
-                case 4:
-                    listado.add("cuatro");
-                    break;
-                case 5:
-                    listado.add("cinco");
-                    break;
-                case 6:
-                    listado.add("seis");
-                    break;
-                case 7:
-                    listado.add("siete");
-                    break;
-                case 8:
-                    listado.add("ocho");
-                    break;
-                case 9:
-                    listado.add("nueve");
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: "
-                            + remanente % 10);
-            }
-
+            listado.add(mapaNumeros.get(remanente%10));
             remanente = remanente / 10;
-
         }
 
         StringBuilder miSb = new StringBuilder();
@@ -67,7 +43,6 @@ public class Ex02NumberAsText {
             count++;
         }
 
-        valorComoTexto = miSb.toString();
-        return valorComoTexto;
+        return miSb.toString();
     }
 }
